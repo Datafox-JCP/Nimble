@@ -7,18 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C6AFEC932AF68C95001AE3C6 /* TokenUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFEC922AF68C95001AE3C6 /* TokenUtils.swift */; };
+		C6AFEC952AF68EC7001AE3C6 /* SurveysListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFEC942AF68EC7001AE3C6 /* SurveysListView.swift */; };
+		C6AFEC972AF6C217001AE3C6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFEC962AF6C217001AE3C6 /* Constants.swift */; };
+		C6AFEC992AF6CB22001AE3C6 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFEC982AF6CB22001AE3C6 /* ForgotPasswordView.swift */; };
 		C6F640D42AF53B3000EB3CFB /* NimbleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F640D32AF53B3000EB3CFB /* NimbleApp.swift */; };
-		C6F640D62AF53B3000EB3CFB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F640D52AF53B3000EB3CFB /* ContentView.swift */; };
+		C6F640D62AF53B3000EB3CFB /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F640D52AF53B3000EB3CFB /* LoginView.swift */; };
 		C6F640D82AF53B3500EB3CFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6F640D72AF53B3500EB3CFB /* Assets.xcassets */; };
 		C6F640DB2AF53B3500EB3CFB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6F640DA2AF53B3500EB3CFB /* Preview Assets.xcassets */; };
+		C6F640E42AF5C9C900EB3CFB /* TokenResp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F640E32AF5C9C900EB3CFB /* TokenResp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C6AFEC922AF68C95001AE3C6 /* TokenUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenUtils.swift; sourceTree = "<group>"; };
+		C6AFEC942AF68EC7001AE3C6 /* SurveysListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveysListView.swift; sourceTree = "<group>"; };
+		C6AFEC962AF6C217001AE3C6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C6AFEC982AF6CB22001AE3C6 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		C6F640D02AF53B3000EB3CFB /* Nimble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nimble.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6F640D32AF53B3000EB3CFB /* NimbleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NimbleApp.swift; sourceTree = "<group>"; };
-		C6F640D52AF53B3000EB3CFB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C6F640D52AF53B3000EB3CFB /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		C6F640D72AF53B3500EB3CFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C6F640DA2AF53B3500EB3CFB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C6F640E32AF5C9C900EB3CFB /* TokenResp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +62,12 @@
 			isa = PBXGroup;
 			children = (
 				C6F640D32AF53B3000EB3CFB /* NimbleApp.swift */,
-				C6F640D52AF53B3000EB3CFB /* ContentView.swift */,
+				C6F640D52AF53B3000EB3CFB /* LoginView.swift */,
+				C6AFEC942AF68EC7001AE3C6 /* SurveysListView.swift */,
+				C6AFEC982AF6CB22001AE3C6 /* ForgotPasswordView.swift */,
+				C6F640E32AF5C9C900EB3CFB /* TokenResp.swift */,
+				C6AFEC922AF68C95001AE3C6 /* TokenUtils.swift */,
+				C6AFEC962AF6C217001AE3C6 /* Constants.swift */,
 				C6F640D72AF53B3500EB3CFB /* Assets.xcassets */,
 				C6F640D92AF53B3500EB3CFB /* Preview Content */,
 			);
@@ -137,8 +152,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C6F640D62AF53B3000EB3CFB /* ContentView.swift in Sources */,
+				C6AFEC932AF68C95001AE3C6 /* TokenUtils.swift in Sources */,
+				C6AFEC992AF6CB22001AE3C6 /* ForgotPasswordView.swift in Sources */,
+				C6F640D62AF53B3000EB3CFB /* LoginView.swift in Sources */,
+				C6F640E42AF5C9C900EB3CFB /* TokenResp.swift in Sources */,
 				C6F640D42AF53B3000EB3CFB /* NimbleApp.swift in Sources */,
+				C6AFEC972AF6C217001AE3C6 /* Constants.swift in Sources */,
+				C6AFEC952AF68EC7001AE3C6 /* SurveysListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +300,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -309,6 +330,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
