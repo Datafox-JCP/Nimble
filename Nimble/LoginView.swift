@@ -111,8 +111,6 @@ struct LoginView: View {
     
     // MARK: - Funcions
     private func performAuthentication() {
-        let clientId = Constants.clientId
-        let clientSecret = Constants.clientSecret
         
         guard let url = URL(string: "\(Constants.baseUrl)/api/v1/oauth/token") else {
             print("Invalid URL")
@@ -124,8 +122,8 @@ struct LoginView: View {
             URLQueryItem(name: "grant_type", value: "password"),
             URLQueryItem(name: "email", value: email),
             URLQueryItem(name: "password", value: password),
-            URLQueryItem(name: "client_id", value: clientId),
-            URLQueryItem(name: "client_secret", value: clientSecret)
+            URLQueryItem(name: "client_id", value: Constants.clientId),
+            URLQueryItem(name: "client_secret", value: Constants.clientSecret)
         ]
         
         guard let requestUrl = components?.url else {

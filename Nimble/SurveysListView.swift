@@ -8,34 +8,79 @@
 import SwiftUI
 
 struct SurveysListView: View {
-    
+    // MARK: Properties
     @ObservedObject var viewModel = SurveysListViewModel()
     
+    @State private var currentDateAndTime = Date.now
     @State private var isRefreshing = false
     
+    // MARK: - View
     var body: some View {
-        VStack {
-            if viewModel.isLoading {
-                ProgressView("Loading Surveys...")
-            } else {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 10) {
-                        ForEach(viewModel.surveys) { survey in
-                            NavigationLink(destination: SurveyDetailScreen(survey: survey)) {
-                                SurveyCardView(survey: survey)
-                            }
+        ZStack {
+            Image("background1")
+                .resizable()
+            
+            VStack {
+                if viewModel.isLoading {
+                    ProgressView("Loading Surveys...")
+                } else {
+                    
+                    VStack(alignment: .leading) {
+                        formattedDate()
+                        
+                        HStack {
+                            Text("Today")
+                                .font(.largeTitle)
+                                .bold()
+                                .foregroundColor(.white)
+                            
+                            Spacer()
+                            
+                            Image("userpic")
+                                .resizable()
+                                .frame(width: 36, height: 36)
                         }
-                    }
+                    } // VStack
+                    .padding(.top, 64)
                     .padding()
+                    
+                    Spacer()
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(alignment: .bottom, spacing: 10) {
+                            ForEach(viewModel.surveys) { survey in
+                                NavigationLink(destination: SurveyDetailScreen(survey: survey)) {
+                                    SurveyCardView(survey: survey)
+                                } // Navigation
+                            } // Loop
+                        } //  HStack
+                    } // Scroll
+                    .padding()
+                    .padding(.bottom, 48)
                     .refreshable {
                         await refreshData()
                     }
-                }
-            }
-        }
+                } // Condition
+            } // VStacl
+        } // ZStack
+        .ignoresSafeArea()
+        .navigationBarBackButtonHidden()
         .onAppear {
             viewModel.loadSurveys()
         }
+    }
+    
+    // MARK: - Functions
+    
+    private func formattedDate() -> Text {
+        let currentDate = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE dd MMMM"
+        let formattedDate = formatter.string(from: currentDate).uppercased()
+        
+        return Text(formattedDate)
+            .font(.headline)
+            .foregroundColor(.white)
     }
     
     private func refreshData() async {
@@ -44,40 +89,27 @@ struct SurveysListView: View {
         isRefreshing = false
     }
     
-    
-    /*
-     func checkAccessTokenExpiry() {
-     if let storedAccessToken = getAccessToken() {
-     // Check if the access token has expired (you may need additional logic based on the API)
-     let accessTokenExpired = /* Add logic to check if access token is expired */
-     
-     if accessTokenExpired {
-     // Use refresh token to obtain a new access token
-     refreshToken()
-     }
-     } else {
-     print("Access token not found. User needs to log in.")
-     }
-     }
-     */
-    
-    func refreshToken() {
+    // TODO: - This code, should work but whem needs to be executed
+    private func refreshToken() {
         guard let refreshToken = getRefreshToken() else {
             print("Refresh token not found. User needs to log in.")
             return
         }
         
+        let clientId = Constants.clientId
+        let clientSecret = Constants.clientSecret
+        
         let parameters = """
             {
                 "grant_type": "refresh_token",
                 "refresh_token": "\(refreshToken)",
-                "client_id": "YOUR_CLIENT_ID",
-                "client_secret": "YOUR_CLIENT_SECRET"
+                "client_id": clientId,
+                "client_secret": clientSecret
             }
         """
         let postData = parameters.data(using: .utf8)
         
-        var request = URLRequest(url: URL(string: "https://survey-api.nimblehq.co/api/v1/oauth/token")!,timeoutInterval: Double.infinity)
+        var request = URLRequest(url: URL(string: "\(Constants.baseUrl)/api/v1/oauth/token")!,timeoutInterval: Double.infinity)
         request.httpMethod = "POST"
         request.httpBody = postData
         
@@ -90,20 +122,18 @@ struct SurveysListView: View {
             if let responseString = String(data: data, encoding: .utf8),
                let tokenResponse = try? JSONDecoder().decode(TokenResponse.self, from: data) {
                 let accessToken = tokenResponse.data.attributes.access_token
-                    //                storeAccessToken(accessToken: accessToken)
-                
-                    // You may also update the UI or perform additional actions if needed
             }
         }
         .resume()
     }
 }
 
+// MARK: - Preview
 #Preview {
     SurveysListView()
 }
 
-
+// MARK: - Card
 struct SurveyCardView: View {
     let survey: Survey
     
