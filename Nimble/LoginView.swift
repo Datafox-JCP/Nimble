@@ -43,8 +43,7 @@ struct LoginView: View {
                     .frame(height: 40)
                     .padding(.horizontal)
                     
-                        /// Fussion Password and forgot button
-                        //HStack {
+                    /// Fussion Password and forgot button
                     ZStack {
                         RoundedRectangle(cornerRadius: 8)
                             .foregroundStyle(.gray.opacity(0.3))
@@ -63,15 +62,15 @@ struct LoginView: View {
                                     .foregroundColor(.gray.opacity(0.8))
                             }
                             .padding(.horizontal)
-                        }
+                        } // HStack
                     } // ZStack
                     .frame(height: 40)
                     .padding(.horizontal)
                     
                     // MARK: - Login button
                     /// Always use
-                    ///  your_email@example.com
-                    ///  12345678
+                    /// your_email@example.com
+                    /// 12345678
                     Button {
                         performAuthentication()
                     } label: {
