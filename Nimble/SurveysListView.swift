@@ -18,8 +18,10 @@ struct SurveysListView: View {
     // MARK: - View
     var body: some View {
         ZStack {
-            Image(selectedCard % 2 == 0 ? "background1" : "background2")
+            Image(selectedCard % 2 == 0 ? "background2" : "background1")
                 .resizable()
+                .scaledToFill()
+                .edgesIgnoringSafeArea(.all)
             
             VStack {
                 if viewModel.isLoading {
@@ -48,10 +50,12 @@ struct SurveysListView: View {
                     Spacer()
                     
                     ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(alignment: .bottom, spacing: 10) {
-                            ForEach(viewModel.surveys) { survey in
+                        HStack(alignment: .bottom, spacing: 0) {
+                            ForEach(0..<viewModel.surveys.count, id: \.self) { index in
+                                let survey = viewModel.surveys[index]
                                 NavigationLink(destination: SurveyDetailScreen(survey: survey)) {
-                                    SurveyCardView(survey: survey, index: 2, selectedCard: $selectedCard)
+                                    
+                                    SurveyCardView(selectedCard: $selectedCard, survey: survey, index: index)
                                         .frame(width: UIScreen.main.bounds.width)
                                 } // Navigation
                             } // Loop
@@ -59,13 +63,13 @@ struct SurveysListView: View {
                     } // Scroll
                     .padding()
                     .padding(.bottom, 48)
-                    .refreshable {
-                        await refreshData()
-                    }
+//                    .refreshable {
+//                        refreshData()
+//                    }
                 } // Condition
-            } // VStacl
+            } // VStack
         } // ZStack
-        .ignoresSafeArea()
+//        .ignoresSafeArea()
         .navigationBarBackButtonHidden()
         .onAppear {
             viewModel.loadSurveys()
@@ -86,9 +90,9 @@ struct SurveysListView: View {
     }
     
     /// This partial code is for refresh the surveys
-    private func refreshData() async {
+    private func refreshData() {
         isRefreshing = true
-        await viewModel.loadSurveys()
+        viewModel.loadSurveys()
         isRefreshing = false
     }
     
@@ -136,10 +140,13 @@ struct SurveysListView: View {
 // MARK: - Card
 struct SurveyCardView: View {
     // MARK: - Properties
+        
+    @Binding var selectedCard: Int
+    
     let survey: Survey
     var index: Int
-        @Binding var selectedCard: Int
     
+    // MARK: - View
     var body: some View {
         VStack(alignment: .leading) {
             Text(survey.attributes.title)
@@ -163,7 +170,7 @@ struct SurveyCardView: View {
                 
             } // HStack
         } // VStack
-//        .frame(width: 600)
+        .frame(width: 320)
         .onAppear {
             if index == selectedCard {
                 selectedCard += 1
