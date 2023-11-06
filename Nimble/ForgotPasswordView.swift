@@ -58,7 +58,7 @@ struct ForgotPasswordView: View {
                             .frame(height: 36)
                     }
                     // TODO: - Implement validation (email valid)
-                    .disabled(email.isEmpty)
+//                    .disabled(email.isEmpty)
                     .foregroundColor(.black)
                     .accentColor(.white)
                     .buttonStyle(.borderedProminent)

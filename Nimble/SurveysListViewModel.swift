@@ -14,7 +14,7 @@ class SurveysListViewModel: ObservableObject {
         func loadSurveys() {
             isLoading = true
 
-            guard let url = URL(string: "https://survey-api.nimblehq.co/api/v1/surveys?page[number]=1&page[size]=2") else {
+            guard let url = URL(string: "\(Constants.baseUrl)/api/v1/surveys?page[number]=1&page[size]=2") else {
                 print("Invalid URL")
                 return
             }
@@ -28,8 +28,6 @@ class SurveysListViewModel: ObservableObject {
                 print("Access token not saved")
             }
 
-            
-//            request.addValue("Bearer F6oR17w8OOvkrjb9Hg1ba5g2B4WpKTEbMueEU-V2xuQ", forHTTPHeaderField: "Authorization")
             request.httpMethod = "GET"
 
             URLSession.shared.dataTask(with: request) { data, response, error in
@@ -39,7 +37,7 @@ class SurveysListViewModel: ObservableObject {
                         print(String(describing: error))
                         return
                     }
-                    print(String(data: data, encoding: .utf8)!)
+//                    print(String(data: data, encoding: .utf8)!)
 
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
@@ -53,7 +51,6 @@ class SurveysListViewModel: ObservableObject {
                     } catch {
                         print("Error decoding JSON: \(error)")
                     }
-
                 }
             }.resume()
         }

@@ -80,7 +80,7 @@ struct LoginView: View {
                             .frame(height: 36)
                     }
                     // TODO: - Implement validations (email valid, chars in password...)
-                    .disabled(email.isEmpty && password.isEmpty)
+//                    .disabled(email.isEmpty && password.isEmpty)
                     .foregroundColor(.black)
                     .accentColor(.white)
                     .buttonStyle(.borderedProminent)
@@ -139,7 +139,6 @@ struct LoginView: View {
                 print(String(describing: error))
                 return
             }
-        
             
             if let responseString = String(data: data, encoding: .utf8) {
                 if responseString.contains("invalid_client") {
@@ -161,7 +160,7 @@ struct LoginView: View {
                         storeAccessToken(accessToken: accessToken, expiresIn: expiresIn, refreshToken: refreshToken)
                         
                         let storedValue = getAccessToken()
-                        print(storedValue ?? "Access token not found")
+//                        print(storedValue ?? "Access token not found")
                         moveToSurveysScreen()
                     } else {
                         errorMessage = "Failed to decode JSON response"
