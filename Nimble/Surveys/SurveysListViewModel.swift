@@ -42,7 +42,6 @@ class SurveysListViewModel: ObservableObject {
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
 
                 let decoder = JSONDecoder()
-//                decoder.keyDecodingStrategy = .convertFromSnakeCase
                 decoder.dateDecodingStrategy = .formatted(dateFormatter)
 
                 do {

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SurveysListView: View {
     // MARK: Properties
-    @ObservedObject var viewModel = SurveysListViewModel()
+    @StateObject private var viewModel = SurveysListViewModel()
 
     @State private var currentDateAndTime = Date.now
     @State private var isRefreshing = false
