@@ -23,7 +23,7 @@ struct LoginView: View {
             ZStack {
                 Image("background")
                     .resizable()
-                
+
                 if validatingUser {
                     ProgressView()
                         .tint(.white)
@@ -131,10 +131,7 @@ struct LoginView: View {
             URLQueryItem(name: "client_secret", value: Constants.clientSecret)
         ]
 
-        guard let requestUrl = components?.url else {
-            print("Invalid request URL")
-            return
-        }
+        guard let requestUrl = components?.url else { return}
 
         var request = URLRequest(url: requestUrl)
         request.httpMethod = "POST"
@@ -161,9 +158,9 @@ struct LoginView: View {
                 } else {
                     if let jsonData = responseString.data(using: .utf8),
                        let tokenResponse = try? JSONDecoder().decode(TokenResponse.self, from: jsonData) {
-                        let accessToken = tokenResponse.data.attributes.access_token
-                        let expiresIn = Int(tokenResponse.data.attributes.expires_in)
-                        let refreshToken = tokenResponse.data.attributes.refresh_token
+                        let accessToken = tokenResponse.data.attributes.accessToken
+                        let expiresIn = Int(tokenResponse.data.attributes.expiresIn)
+                        let refreshToken = tokenResponse.data.attributes.refreshToken
 
                         storeAccessToken(accessToken: accessToken, expiresIn: expiresIn, refreshToken: refreshToken)
                         moveToSurveysScreen()

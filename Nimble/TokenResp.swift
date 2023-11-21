@@ -15,12 +15,20 @@ struct TokenResponse: Codable {
         let type: String
         let attributes: TokenAttributes
     }
+}
 
-    struct TokenAttributes: Codable {
-        let access_token: String
-        let token_type: String
-        let expires_in: Int
-        let refresh_token: String
-        let created_at: Int
+struct TokenAttributes: Codable {
+    let accessToken: String
+    let tokenType: String
+    let expiresIn: Int
+    let refreshToken: String
+    let createdAt: Int
+
+    enum CodingKeys: String, CodingKey {
+        case accessToken = "access_token"
+        case tokenType = "token_type"
+        case expiresIn = "expires_in"
+        case refreshToken = "refresh_token"
+        case createdAt = "created_at"
     }
 }
