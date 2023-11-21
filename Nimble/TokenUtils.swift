@@ -7,7 +7,7 @@
 
 import Foundation
 
-// TODO: Should this use Keychain?
+// MARK: Should this use Keychain?
 func storeAccessToken(accessToken: String, expiresIn: Int, refreshToken: String) {
     UserDefaults.standard.set(accessToken, forKey: "AccessToken")
     UserDefaults.standard.set(expiresIn, forKey: "ExpiresIn")

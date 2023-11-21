@@ -20,7 +20,7 @@ class SurveysListViewModel: ObservableObject {
             }
 
             var request = URLRequest(url: url)
-            
+
             if let accessToken = getAccessToken() {
                 let bearerToken = "Bearer \(accessToken)"
                 request.addValue(bearerToken, forHTTPHeaderField: "Authorization")
@@ -30,7 +30,7 @@ class SurveysListViewModel: ObservableObject {
 
             request.httpMethod = "GET"
 
-            URLSession.shared.dataTask(with: request) { data, response, error in
+            URLSession.shared.dataTask(with: request) { data, _, error in
                 DispatchQueue.main.async {
                     self.isLoading = false
                     guard let data = data else {
@@ -67,4 +67,3 @@ struct SurveyListResponse: Decodable {
         var records: Int
     }
 }
-

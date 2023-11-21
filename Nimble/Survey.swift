@@ -11,7 +11,7 @@ struct Survey: Decodable, Identifiable {
     var id: String
     var type: String
     var attributes: Attributes
-    
+
     struct Attributes: Decodable {
         var title: String
         var description: String
@@ -25,4 +25,3 @@ struct Survey: Decodable, Identifiable {
         var survey_type: String
     }
 }
-
