@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C63250142B0CD6E4003EF93F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63250132B0CD6E4003EF93F /* LoginViewModel.swift */; };
+		C632501E2B0CEE38003EF93F /* NimbleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C632501D2B0CEE38003EF93F /* NimbleTests.swift */; };
+		C63250282B0D2B72003EF93F /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63250272B0D2B72003EF93F /* LoginViewModelTests.swift */; };
 		C6AFEC932AF68C95001AE3C6 /* TokenUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFEC922AF68C95001AE3C6 /* TokenUtils.swift */; };
 		C6AFEC952AF68EC7001AE3C6 /* SurveysListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFEC942AF68EC7001AE3C6 /* SurveysListView.swift */; };
 		C6AFEC972AF6C217001AE3C6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFEC962AF6C217001AE3C6 /* Constants.swift */; };
@@ -21,7 +24,21 @@
 		C6F640E42AF5C9C900EB3CFB /* TokenResp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F640E32AF5C9C900EB3CFB /* TokenResp.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		C632501F2B0CEE38003EF93F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C6F640C82AF53B3000EB3CFB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C6F640CF2AF53B3000EB3CFB;
+			remoteInfo = Nimble;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		C63250132B0CD6E4003EF93F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		C632501B2B0CEE38003EF93F /* NimbleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C632501D2B0CEE38003EF93F /* NimbleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NimbleTests.swift; sourceTree = "<group>"; };
+		C63250272B0D2B72003EF93F /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		C6AFEC922AF68C95001AE3C6 /* TokenUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenUtils.swift; sourceTree = "<group>"; };
 		C6AFEC942AF68EC7001AE3C6 /* SurveysListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveysListView.swift; sourceTree = "<group>"; };
 		C6AFEC962AF6C217001AE3C6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -38,6 +55,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C63250182B0CEE38003EF93F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C6F640CD2AF53B3000EB3CFB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -48,10 +72,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C632501C2B0CEE38003EF93F /* NimbleTests */ = {
+			isa = PBXGroup;
+			children = (
+				C632501D2B0CEE38003EF93F /* NimbleTests.swift */,
+				C63250272B0D2B72003EF93F /* LoginViewModelTests.swift */,
+			);
+			path = NimbleTests;
+			sourceTree = "<group>";
+		};
 		C6F640C72AF53B3000EB3CFB = {
 			isa = PBXGroup;
 			children = (
 				C6F640D22AF53B3000EB3CFB /* Nimble */,
+				C632501C2B0CEE38003EF93F /* NimbleTests */,
 				C6F640D12AF53B3000EB3CFB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -60,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				C6F640D02AF53B3000EB3CFB /* Nimble.app */,
+				C632501B2B0CEE38003EF93F /* NimbleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -69,6 +104,7 @@
 			children = (
 				C6F640D32AF53B3000EB3CFB /* NimbleApp.swift */,
 				C6F640D52AF53B3000EB3CFB /* LoginView.swift */,
+				C63250132B0CD6E4003EF93F /* LoginViewModel.swift */,
 				C6AFEC942AF68EC7001AE3C6 /* SurveysListView.swift */,
 				C6AFEC9E2AF6E643001AE3C6 /* SurveyDetailScreen.swift */,
 				C6AFEC9A2AF6E587001AE3C6 /* SurveysListViewModel.swift */,
@@ -94,6 +130,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		C632501A2B0CEE38003EF93F /* NimbleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C63250212B0CEE39003EF93F /* Build configuration list for PBXNativeTarget "NimbleTests" */;
+			buildPhases = (
+				C63250172B0CEE38003EF93F /* Sources */,
+				C63250182B0CEE38003EF93F /* Frameworks */,
+				C63250192B0CEE38003EF93F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C63250202B0CEE38003EF93F /* PBXTargetDependency */,
+			);
+			name = NimbleTests;
+			productName = NimbleTests;
+			productReference = C632501B2B0CEE38003EF93F /* NimbleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		C6F640CF2AF53B3000EB3CFB /* Nimble */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C6F640DE2AF53B3500EB3CFB /* Build configuration list for PBXNativeTarget "Nimble" */;
@@ -121,6 +175,10 @@
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
+					C632501A2B0CEE38003EF93F = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = C6F640CF2AF53B3000EB3CFB;
+					};
 					C6F640CF2AF53B3000EB3CFB = {
 						CreatedOnToolsVersion = 15.0.1;
 					};
@@ -140,11 +198,19 @@
 			projectRoot = "";
 			targets = (
 				C6F640CF2AF53B3000EB3CFB /* Nimble */,
+				C632501A2B0CEE38003EF93F /* NimbleTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C63250192B0CEE38003EF93F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C6F640CE2AF53B3000EB3CFB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -157,10 +223,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C63250172B0CEE38003EF93F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C63250282B0D2B72003EF93F /* LoginViewModelTests.swift in Sources */,
+				C632501E2B0CEE38003EF93F /* NimbleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C6F640CC2AF53B3000EB3CFB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C63250142B0CD6E4003EF93F /* LoginViewModel.swift in Sources */,
 				C6AFEC9D2AF6E607001AE3C6 /* Survey.swift in Sources */,
 				C6AFEC932AF68C95001AE3C6 /* TokenUtils.swift in Sources */,
 				C6AFEC992AF6CB22001AE3C6 /* ForgotPasswordView.swift in Sources */,
@@ -176,7 +252,51 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		C63250202B0CEE38003EF93F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C6F640CF2AF53B3000EB3CFB /* Nimble */;
+			targetProxy = C632501F2B0CEE38003EF93F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		C63250222B0CEE39003EF93F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T2Q4YR3P44;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = mx.datafox.NimbleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nimble.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Nimble";
+			};
+			name = Debug;
+		};
+		C63250232B0CEE39003EF93F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T2Q4YR3P44;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = mx.datafox.NimbleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nimble.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Nimble";
+			};
+			name = Release;
+		};
 		C6F640DC2AF53B3500EB3CFB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -359,6 +479,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C63250212B0CEE39003EF93F /* Build configuration list for PBXNativeTarget "NimbleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C63250222B0CEE39003EF93F /* Debug */,
+				C63250232B0CEE39003EF93F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C6F640CB2AF53B3000EB3CFB /* Build configuration list for PBXProject "Nimble" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

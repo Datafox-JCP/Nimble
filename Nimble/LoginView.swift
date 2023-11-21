@@ -9,13 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     // MARK: Properties
-    @State private var email = ""
-    @State private var password = ""
-    @State private var showAlert = false
-    @State private var errorMessage = ""
-    @State private var isSurveyListPresented = false
-    @State private var isRecoverPresented = false
-    @State private var validatingUser = false
+    @StateObject private var loginViewModel = LoginViewModel()
 
     // MARK: - View
     var body: some View {
@@ -24,7 +18,7 @@ struct LoginView: View {
                 Image("background")
                     .resizable()
 
-                if validatingUser {
+                if loginViewModel.validatingUser {
                     ProgressView()
                         .tint(.white)
                 }
@@ -39,8 +33,8 @@ struct LoginView: View {
                         RoundedRectangle(cornerRadius: 8)
                             .foregroundStyle(.gray.opacity(0.3))
 
-                        TextField("", text: $email, prompt: Text("Email")
-                            .foregroundColor(Color.gray))
+                        TextField("", text: $loginViewModel.email, prompt: Text("Email").foregroundColor(Color.gray))
+                        .accessibilityIdentifier("EmailTextField")
                         .keyboardType(.emailAddress)
                         .submitLabel(.next)
                         .foregroundStyle(.white)
@@ -55,12 +49,14 @@ struct LoginView: View {
                             .foregroundStyle(.gray.opacity(0.3))
 
                         HStack {
-                            SecureField("", text: $password, prompt: Text("Password").foregroundColor(Color.gray))
+                            SecureField("", text: $loginViewModel.password, prompt: Text("Password")
+                                .foregroundColor(Color.gray))
+                                .accessibilityIdentifier("PasswordTextField")
                                 .foregroundStyle(.white)
                                 .padding(.horizontal)
 
                             Button {
-                                isRecoverPresented.toggle()
+                                loginViewModel.isRecoverPresented.toggle()
                             } label: {
                                 Text("Forgot?")
                                     .font(.callout)
@@ -72,39 +68,36 @@ struct LoginView: View {
                     .frame(height: 40)
                     .padding(.horizontal)
 
-                    // MARK: - Login button
-                    /// Always use
-                    /// your_email@example.com
-                    /// 12345678
+                    // Login
+                    /// your_email@example.com - 12345678
                     Button {
-                        performAuthentication()
-                        validatingUser.toggle()
+                        loginViewModel.validatingUser.toggle()
+                        loginViewModel.performAuthentication()
                     } label: {
                         Text("Log in")
                             .bold()
+                            .accessibilityIdentifier("LoginButton")
                             .frame(maxWidth: .infinity)
                             .frame(height: 36)
                     }
-                    // MARK: - Implement validations (email valid, chars in password...)
-//                    .disabled(email.isEmpty && password.isEmpty)
                     .foregroundColor(.black)
                     .accentColor(.white)
                     .buttonStyle(.borderedProminent)
                     .padding()
 
                     /// Goes to main list screen
-                    NavigationLink(destination: SurveysListView(), isActive: $isSurveyListPresented) {
+                    NavigationLink(destination: SurveysListView(), isActive: $loginViewModel.isSurveyListPresented) {
                         EmptyView()
                     }
                     /// Goes to recover password screen
-                    NavigationLink(destination: ForgotPasswordView(), isActive: $isRecoverPresented) {
+                    NavigationLink(destination: ForgotPasswordView(), isActive: $loginViewModel.isRecoverPresented) {
                         EmptyView()
                     }
                 } // VStack
-                .alert(isPresented: $showAlert) {
+                .alert(isPresented: $loginViewModel.showAlert) {
                     Alert(
                         title: Text("Error"),
-                        message: Text(errorMessage),
+                        message: Text(loginViewModel.errorMessage),
                         dismissButton: .default(Text("OK"))
                     )
                 }
@@ -113,73 +106,6 @@ struct LoginView: View {
             .ignoresSafeArea()
             .navigationBarHidden(true)
         } // Nav
-    }
-
-    // MARK: - Functions
-    private func performAuthentication() {
-        guard let url = URL(string: "\(Constants.baseUrl)/api/v1/oauth/token") else {
-            print("Invalid URL")
-            return
-        }
-
-        var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
-        components?.queryItems = [
-            URLQueryItem(name: "grant_type", value: "password"),
-            URLQueryItem(name: "email", value: email),
-            URLQueryItem(name: "password", value: password),
-            URLQueryItem(name: "client_id", value: Constants.clientId),
-            URLQueryItem(name: "client_secret", value: Constants.clientSecret)
-        ]
-
-        guard let requestUrl = components?.url else { return}
-
-        var request = URLRequest(url: requestUrl)
-        request.httpMethod = "POST"
-
-        URLSession.shared.dataTask(with: request) { data, _, error in
-            guard let data = data else {
-                print(String(describing: error))
-                return
-            }
-
-            if let responseString = String(data: data, encoding: .utf8) {
-                if responseString.contains("invalid_client") {
-                    errorMessage = "Client authentication failed due to unknown client."
-                    showAlert.toggle()
-                    validatingUser.toggle()
-                } else if responseString.contains("invalid_grant") {
-                        errorMessage = "Client authentication failed due to unknown client."
-                    showAlert.toggle()
-                    validatingUser.toggle()
-                } else if responseString.contains("invalid_email_or_password") {
-                        errorMessage = "Your email or password is incorrect. Please try again."
-                    showAlert.toggle()
-                    validatingUser.toggle()
-                } else {
-                    if let jsonData = responseString.data(using: .utf8),
-                       let tokenResponse = try? JSONDecoder().decode(TokenResponse.self, from: jsonData) {
-                        let accessToken = tokenResponse.data.attributes.accessToken
-                        let expiresIn = Int(tokenResponse.data.attributes.expiresIn)
-                        let refreshToken = tokenResponse.data.attributes.refreshToken
-
-                        storeAccessToken(accessToken: accessToken, expiresIn: expiresIn, refreshToken: refreshToken)
-                        moveToSurveysScreen()
-                    } else {
-                        errorMessage = "Failed to decode JSON response"
-                        showAlert.toggle()
-                        validatingUser.toggle()
-                    }
-                }
-            }
-        }
-        .resume()
-    }
-
-    private func moveToSurveysScreen() {
-        DispatchQueue.main.async {
-            validatingUser = false
-            self.isSurveyListPresented = true
-        }
     }
 }
 
