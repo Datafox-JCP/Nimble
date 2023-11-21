@@ -90,7 +90,7 @@ struct SurveysListView: View {
         isRefreshing = false
     }
 
-        // ARK: - This code, should work but whem needs to be executed
+    // MARK: - This code, should work but when needs to be executed?
     private func refreshToken() {
         guard let refreshToken = getRefreshToken() else {
             print("Refresh token not found. User needs to log in.")

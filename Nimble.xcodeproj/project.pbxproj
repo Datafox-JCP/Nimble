@@ -81,6 +81,51 @@
 			path = NimbleTests;
 			sourceTree = "<group>";
 		};
+		C63250292B0D3AAA003EF93F /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				C6F640D52AF53B3000EB3CFB /* LoginView.swift */,
+				C63250132B0CD6E4003EF93F /* LoginViewModel.swift */,
+				C6AFEC982AF6CB22001AE3C6 /* ForgotPasswordView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		C632502A2B0D3AF6003EF93F /* Surveys */ = {
+			isa = PBXGroup;
+			children = (
+				C6AFEC942AF68EC7001AE3C6 /* SurveysListView.swift */,
+				C6AFEC9A2AF6E587001AE3C6 /* SurveysListViewModel.swift */,
+			);
+			path = Surveys;
+			sourceTree = "<group>";
+		};
+		C632502B2B0D3B0F003EF93F /* Surveys Detail */ = {
+			isa = PBXGroup;
+			children = (
+				C6AFEC9E2AF6E643001AE3C6 /* SurveyDetailScreen.swift */,
+			);
+			path = "Surveys Detail";
+			sourceTree = "<group>";
+		};
+		C632502C2B0D3B60003EF93F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C6AFEC962AF6C217001AE3C6 /* Constants.swift */,
+				C6AFEC922AF68C95001AE3C6 /* TokenUtils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		C632502D2B0D3B7A003EF93F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C6F640E32AF5C9C900EB3CFB /* TokenResp.swift */,
+				C6AFEC9C2AF6E607001AE3C6 /* Survey.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		C6F640C72AF53B3000EB3CFB = {
 			isa = PBXGroup;
 			children = (
@@ -103,16 +148,11 @@
 			isa = PBXGroup;
 			children = (
 				C6F640D32AF53B3000EB3CFB /* NimbleApp.swift */,
-				C6F640D52AF53B3000EB3CFB /* LoginView.swift */,
-				C63250132B0CD6E4003EF93F /* LoginViewModel.swift */,
-				C6AFEC942AF68EC7001AE3C6 /* SurveysListView.swift */,
-				C6AFEC9E2AF6E643001AE3C6 /* SurveyDetailScreen.swift */,
-				C6AFEC9A2AF6E587001AE3C6 /* SurveysListViewModel.swift */,
-				C6AFEC982AF6CB22001AE3C6 /* ForgotPasswordView.swift */,
-				C6F640E32AF5C9C900EB3CFB /* TokenResp.swift */,
-				C6AFEC922AF68C95001AE3C6 /* TokenUtils.swift */,
-				C6AFEC962AF6C217001AE3C6 /* Constants.swift */,
-				C6AFEC9C2AF6E607001AE3C6 /* Survey.swift */,
+				C63250292B0D3AAA003EF93F /* Login */,
+				C632502A2B0D3AF6003EF93F /* Surveys */,
+				C632502B2B0D3B0F003EF93F /* Surveys Detail */,
+				C632502D2B0D3B7A003EF93F /* Models */,
+				C632502C2B0D3B60003EF93F /* Utils */,
 				C6F640D72AF53B3500EB3CFB /* Assets.xcassets */,
 				C6F640D92AF53B3500EB3CFB /* Preview Content */,
 			);
