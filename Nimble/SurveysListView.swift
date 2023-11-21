@@ -25,9 +25,9 @@ struct SurveysListView: View {
 
             VStack {
                 if viewModel.isLoading {
-                    ProgressView("Loading Surveys...")
+                    ProgressView()
+                        .tint(.black)
                 } else {
-
                     VStack(alignment: .leading) {
                         formattedDate()
 
@@ -54,7 +54,6 @@ struct SurveysListView: View {
                             ForEach(0..<viewModel.surveys.count, id: \.self) { index in
                                 let survey = viewModel.surveys[index]
                                 NavigationLink(destination: SurveyDetailScreen(survey: survey)) {
-
                                     SurveyCardView(selectedCard: $selectedCard, survey: survey, index: index)
                                         .frame(width: UIScreen.main.bounds.width)
                                 } // Navigation
@@ -63,13 +62,9 @@ struct SurveysListView: View {
                     } // Scroll
                     .padding()
                     .padding(.bottom, 48)
-//                    .refreshable {
-//                        refreshData()
-//                    }
                 } // Condition
             } // VStack
         } // ZStack
-//        .ignoresSafeArea()
         .navigationBarBackButtonHidden()
         .onAppear {
             viewModel.loadSurveys()
@@ -77,7 +72,6 @@ struct SurveysListView: View {
     }
 
     // MARK: - Functions
-
     private func formattedDate() -> Text {
         let currentDate = Date()
         let formatter = DateFormatter()
@@ -89,14 +83,14 @@ struct SurveysListView: View {
             .foregroundColor(.white)
     }
 
-    /// This partial code is for refresh the surveys
+        /// This partial code is for refresh the surveys
     private func refreshData() {
         isRefreshing = true
         viewModel.loadSurveys()
         isRefreshing = false
     }
 
-    // ARK: - This code, should work but whem needs to be executed
+        // ARK: - This code, should work but whem needs to be executed
     private func refreshToken() {
         guard let refreshToken = getRefreshToken() else {
             print("Refresh token not found. User needs to log in.")
@@ -125,7 +119,6 @@ struct SurveysListView: View {
                 print(String(describing: error))
                 return
             }
-
 //            if let responseString = String(data: data, encoding: .utf8),
 //               let tokenResponse = try? JSONDecoder().decode(TokenResponse.self, from: data) {
 //                let accessToken = tokenResponse.data.attributes.access_token
@@ -135,21 +128,21 @@ struct SurveysListView: View {
     }
 }
 
-// MARK: - Preview
+    // MARK: - Preview
 #Preview {
     SurveysListView()
 }
 
-// MARK: - Card
+    // MARK: - Card
 struct SurveyCardView: View {
-    // MARK: - Properties
+        // MARK: - Properties
 
     @Binding var selectedCard: Int
 
     let survey: Survey
     var index: Int
 
-    // MARK: - View
+        // MARK: - View
     var body: some View {
         VStack(alignment: .leading) {
             Text(survey.attributes.title)
@@ -170,7 +163,6 @@ struct SurveyCardView: View {
                 Image(systemName: "chevron.forward.circle.fill")
                     .font(.system(size: 36))
                     .tint(.white)
-
             } // HStack
         } // VStack
         .frame(width: 320)

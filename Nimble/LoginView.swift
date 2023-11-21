@@ -15,6 +15,7 @@ struct LoginView: View {
     @State private var errorMessage = ""
     @State private var isSurveyListPresented = false
     @State private var isRecoverPresented = false
+    @State private var validatingUser = false
 
     // MARK: - View
     var body: some View {
@@ -22,6 +23,11 @@ struct LoginView: View {
             ZStack {
                 Image("background")
                     .resizable()
+                
+                if validatingUser {
+                    ProgressView()
+                        .tint(.white)
+                }
 
                 VStack(spacing: 20) {
                     Image("nimble_logo")
@@ -72,6 +78,7 @@ struct LoginView: View {
                     /// 12345678
                     Button {
                         performAuthentication()
+                        validatingUser.toggle()
                     } label: {
                         Text("Log in")
                             .bold()
@@ -108,9 +115,8 @@ struct LoginView: View {
         } // Nav
     }
 
-    // MARK: - Funcions
+    // MARK: - Functions
     private func performAuthentication() {
-
         guard let url = URL(string: "\(Constants.baseUrl)/api/v1/oauth/token") else {
             print("Invalid URL")
             return
@@ -142,13 +148,16 @@ struct LoginView: View {
             if let responseString = String(data: data, encoding: .utf8) {
                 if responseString.contains("invalid_client") {
                     errorMessage = "Client authentication failed due to unknown client."
-                    showAlert = true
+                    showAlert.toggle()
+                    validatingUser.toggle()
                 } else if responseString.contains("invalid_grant") {
                         errorMessage = "Client authentication failed due to unknown client."
-                    showAlert = true
+                    showAlert.toggle()
+                    validatingUser.toggle()
                 } else if responseString.contains("invalid_email_or_password") {
                         errorMessage = "Your email or password is incorrect. Please try again."
-                    showAlert = true
+                    showAlert.toggle()
+                    validatingUser.toggle()
                 } else {
                     if let jsonData = responseString.data(using: .utf8),
                        let tokenResponse = try? JSONDecoder().decode(TokenResponse.self, from: jsonData) {
@@ -157,13 +166,11 @@ struct LoginView: View {
                         let refreshToken = tokenResponse.data.attributes.refresh_token
 
                         storeAccessToken(accessToken: accessToken, expiresIn: expiresIn, refreshToken: refreshToken)
-
-//                        let storedValue = getAccessToken()
-//                        print(storedValue ?? "Access token not found")
                         moveToSurveysScreen()
                     } else {
                         errorMessage = "Failed to decode JSON response"
-                        showAlert = true
+                        showAlert.toggle()
+                        validatingUser.toggle()
                     }
                 }
             }
@@ -173,6 +180,7 @@ struct LoginView: View {
 
     private func moveToSurveysScreen() {
         DispatchQueue.main.async {
+            validatingUser = false
             self.isSurveyListPresented = true
         }
     }
