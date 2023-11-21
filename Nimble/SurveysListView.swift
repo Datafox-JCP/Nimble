@@ -1,9 +1,9 @@
 //
-    //  SurveysListView.swift
-    //  Nimble
-    //
-    //  Created by Juan Hernandez Pazos on 04/11/23.
-    //
+//  SurveysListView.swift
+//  Nimble
+//
+//  Created by Juan Hernandez Pazos on 04/11/23.
+//
 
 import SwiftUI
 
@@ -107,8 +107,8 @@ struct SurveysListView: View {
             {
                 "grant_type": "refresh_token",
                 "refresh_token": "\(refreshToken)",
-                "client_id": "\(Constants.clientId)",
-                "client_secret": "\(Constants.clientSecret)"
+                "client_id": "\(Constants.clientId ?? "")",
+                "client_secret": "\(Constants.clientSecret ?? "")"
             }
         """
         let postData = parameters.data(using: .utf8)
@@ -121,15 +121,15 @@ struct SurveysListView: View {
         request.httpBody = postData
 
         URLSession.shared.dataTask(with: request) { data, _, error in
-            guard let data = data else {
+            guard data != nil else {
                 print(String(describing: error))
                 return
             }
 
-            if let responseString = String(data: data, encoding: .utf8),
-               let tokenResponse = try? JSONDecoder().decode(TokenResponse.self, from: data) {
-                let accessToken = tokenResponse.data.attributes.access_token
-            }
+//            if let responseString = String(data: data, encoding: .utf8),
+//               let tokenResponse = try? JSONDecoder().decode(TokenResponse.self, from: data) {
+//                let accessToken = tokenResponse.data.attributes.access_token
+//            }
         }
         .resume()
     }

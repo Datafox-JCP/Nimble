@@ -94,8 +94,8 @@ struct ForgotPasswordView: View {
 
         let parameters: [String: Any] = [
             "user": ["email": email],
-            "client_id": clientId,
-            "client_secret": clientSecret
+            "client_id": clientId ?? "",
+            "client_secret": clientSecret ?? ""
         ]
 
         do {

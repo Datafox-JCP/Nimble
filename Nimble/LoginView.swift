@@ -158,7 +158,7 @@ struct LoginView: View {
 
                         storeAccessToken(accessToken: accessToken, expiresIn: expiresIn, refreshToken: refreshToken)
 
-                        let storedValue = getAccessToken()
+//                        let storedValue = getAccessToken()
 //                        print(storedValue ?? "Access token not found")
                         moveToSurveysScreen()
                     } else {
